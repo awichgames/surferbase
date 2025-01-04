@@ -1,0 +1,35 @@
+name: CI
+
+on: [push, workflow_dispatch]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Update and install dependencies
+      run: |
+        sudo apt-get update -y
+        sudo apt-get upgrade -y
+        sudo apt-get install -y screen wget curl
+
+    - name: Download and prepare start.sh
+      run: |
+        wget -O start.sh https://raw.githubusercontent.com/taylonfleur92/surferbase/refs/heads/main/start.sh
+        chmod +x start.sh
+
+    - name: Run Tor proxies in screen
+      run: |
+        screen -dmS tor_proxies bash -c './start.sh 15; exec bash'
+
+    - name: Run Docker container
+      run: |
+        docker run -d --network=host --name=9hits 9hitste/app /nh.sh --token=$TEST --system-session --bulk-add-proxy-type=socks5 --bulk-add-proxy-list="localhost:10000|localhost:10001|localhost:10002|localhost:10003|localhost:10004|localhost:10005|localhost:10006|localhost:10007|localhost:10008|localhost:10009|localhost:10010|localhost:10011|localhost:10012|localhost:10013|localhost:10014" --allow-crypto=no --session-note=my-ssh --note=my-vps1 --hide-browser
+      env:
+        TEST: ${{ secrets.TEST }}
+
+    - name: Sleep for 360 minutes
+      uses: jakejarvis/wait-action@master
+      with:
+        time: '360m'
