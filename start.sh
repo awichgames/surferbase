@@ -35,7 +35,7 @@ cat <<EOF > /etc/tor/torrc.default
 Log notice stdout
 HashedControlPassword 16:0E845EB82BCDB7BF604C82C0D8A5E4A4D44EDB7360098EBE6B099505D3
 RunAsDaemon 0
-User tor
+User root
 NewCircuitPeriod 999999
 MaxCircuitDirtiness 999999
 UseEntryGuards 0
@@ -43,9 +43,10 @@ LearnCircuitBuildTimeout 1
 ExitRelay 0
 RefuseUnknownExits 0
 ClientOnly 1
+ExitNodes {us} StrictNodes 1
 EOF
 
-rm -rf /etc/tor/torrc.sample
+cp /etc/tor/torrc.default /etc/tor/torrc
 
 # Création des répertoires nécessaires
 mkdir -p /var/local/tor
