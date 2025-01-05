@@ -36,8 +36,8 @@ Log notice stdout
 HashedControlPassword 16:0E845EB82BCDB7BF604C82C0D8A5E4A4D44EDB7360098EBE6B099505D3
 RunAsDaemon 0
 User tor
-NewCircuitPeriod 30
-MaxCircuitDirtiness 300
+NewCircuitPeriod 999999
+MaxCircuitDirtiness 999999
 UseEntryGuards 0
 LearnCircuitBuildTimeout 1
 ExitRelay 0
