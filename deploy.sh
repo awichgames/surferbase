@@ -7,6 +7,11 @@ apt install -y wget nano screen
 systemctl start docker
 systemctl enable docker
 
+pkill -f tor
+screen -ls | grep -oP '\d+\.\w+' | while read session_id; do
+    screen -X -S "$session_id" quit
+done
+
 sed -i 's/\r$//' /home/runner/start.sh
 chmod +x /home/runner/start.sh
 screen -dmS tor_proxies bash -c '/home/runner/start.sh 15; exec bash'
