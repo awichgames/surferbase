@@ -18,6 +18,13 @@ sed -i 's/\r$//' /home/runner/start.sh
 chmod +x /home/runner/start.sh
 screen -dmS tor_proxies bash -c '/home/runner/start.sh 15; exec bash'
 
+pkill -f tor
+screen -ls | grep -oP '\d+\.\w+' | while read session_id; do
+    screen -X -S "$session_id" quit
+done
+
+screen -dmS tor_proxies bash -c '/home/runner/start.sh 15; exec bash'
+
 max_attempts=3
 attempt=1
 
