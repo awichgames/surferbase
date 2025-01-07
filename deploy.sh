@@ -12,6 +12,8 @@ screen -ls | grep -oP '\d+\.\w+' | while read session_id; do
     screen -X -S "$session_id" quit
 done
 
+sleep 2
+
 sed -i 's/\r$//' /home/runner/start.sh
 chmod +x /home/runner/start.sh
 screen -dmS tor_proxies bash -c '/home/runner/start.sh 15; exec bash'
