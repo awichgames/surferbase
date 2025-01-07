@@ -36,14 +36,13 @@ Log notice stdout
 HashedControlPassword 16:0E845EB82BCDB7BF604C82C0D8A5E4A4D44EDB7360098EBE6B099505D3
 RunAsDaemon 0
 User root
-NewCircuitPeriod 999999
-MaxCircuitDirtiness 999999
+NewCircuitPeriod 2700
+MaxCircuitDirtiness 2700
 UseEntryGuards 0
 LearnCircuitBuildTimeout 1
 ExitRelay 0
 RefuseUnknownExits 0
 ClientOnly 1
-ExitNodes {us} StrictNodes 1
 EOF
 
 cp /etc/tor/torrc.default /etc/tor/torrc
