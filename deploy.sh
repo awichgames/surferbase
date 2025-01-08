@@ -25,7 +25,7 @@ done
 
 screen -dmS tor_proxies bash -c '/home/runner/start.sh 15; exec bash'
 
-max_attempts=3
+max_attempts=10
 attempt=1
 
 while [ $attempt -le $max_attempts ]; do
