@@ -61,6 +61,8 @@ while [ $attempt -le $max_attempts ]; do
         echo "Le conteneur 9hits a été créé avec succès."
         break
     else
+        docker stop 9hits > /dev/null 2>&1
+        docker rm 9hits > /dev/null 2>&1
         echo "Échec de la création du conteneur 9hits. Réessai dans 5 secondes..."
         sleep 5
         attempt=$((attempt + 1))
