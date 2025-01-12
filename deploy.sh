@@ -50,6 +50,13 @@ sed -i 's/\r$//' /home/runner/start.sh
 chmod +x /home/runner/start.sh
 screen -dmS tor_proxies bash -c '/home/runner/start.sh 15; exec bash'
 
+echo "Vérification que le port 10000 est utilisé..."
+while ! ss -tuln | grep -q ':10000\b'; do
+    echo "Le port 10000 n'est pas encore utilisé. Attente de 5 secondes..."
+    sleep 5
+done
+echo "Le port 10000 est maintenant utilisé."
+
 mv /home/runner/redsocks.conf /etc/redsocks.conf
 /etc/init.d/redsocks restart
 
