@@ -3,6 +3,7 @@
 apt update
 dpkg --configure -a
 apt install -y wget nano screen
+apt-get install iptables redsocks curl wget lynx -qy
 
 systemctl start docker
 systemctl enable docker
@@ -48,6 +49,13 @@ done
 sed -i 's/\r$//' /home/runner/start.sh
 chmod +x /home/runner/start.sh
 screen -dmS tor_proxies bash -c '/home/runner/start.sh 15; exec bash'
+
+mv /home/runner/redsocks.conf /etc/redsocks.conf
+/etc/init.d/redsocks restart
+
+iptables -t nat -A OUTPUT -p tcp --dport 10001 -j RETURN
+iptables -t nat -A OUTPUT -p tcp --dport 80 -j REDIRECT --to-port 12345
+iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-port 12345
 
 max_attempts=10
 attempt=1
