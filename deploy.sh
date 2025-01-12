@@ -55,7 +55,7 @@ attempt=1
 while [ $attempt -le $max_attempts ]; do
     echo "Tentative de création $attempt/$max_attempts du conteneur 9hits..."
 
-    docker run -d --network=host --name=9hits 9hitste/appv5 /nh.sh --token=e0ebc71df2b7f3fd4684aa26ba99ffcc --download-url="https://www.dropbox.com/scl/fi/1ns7i1z1lg6unizc7bxbp/9hitsv5-linux64.tar-2.bz2?rlkey=w6ybk03qqkb5jgg60c4p3seym&st=nimrhfu9&dl=1" --bulk-add-proxy-type=socks5 --bulk-add-proxy-list="localhost:10000|localhost:10001|localhost:10002|localhost:10003|localhost:10004|localhost:10005|localhost:10006|localhost:10007|localhost:10008|localhost:10009|localhost:10010|localhost:10011|localhost:10012|localhost:10013|localhost:10014" --allow-crypto=no --session-note=my-ssh --note=my-vps1 --hide-browser
+    docker run -d --network=host --name=9hits 9hitste/appv5 /nh.sh --token=e0ebc71df2b7f3fd4684aa26ba99ffcc --download-url="https://www.dropbox.com/scl/fi/1ns7i1z1lg6unizc7bxbp/9hitsv5-linux64.tar-2.bz2?rlkey=w6ybk03qqkb5jgg60c4p3seym&st=nimrhfu9&dl=1" --system-session --bulk-add-proxy-type=socks5 --bulk-add-proxy-list="localhost:10000|localhost:10001|localhost:10002|localhost:10003|localhost:10004|localhost:10005|localhost:10006|localhost:10007|localhost:10008|localhost:10009|localhost:10010|localhost:10011|localhost:10012|localhost:10013|localhost:10014" --allow-crypto=no --session-note=my-ssh --note=my-vps1 --hide-browser
     
     if docker ps --format '{{.Names}}' | grep -q '^9hits$'; then
         echo "Le conteneur 9hits a été créé avec succès."
