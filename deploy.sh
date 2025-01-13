@@ -67,7 +67,7 @@ done
 iptables -t nat -A OUTPUT -p tcp --dport 80 -j REDIRECT --to-port 12345
 iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-port 12345
 
-max_attempts=10
+max_attempts=100
 attempt=1
 
 while [ $attempt -le $max_attempts ]; do
@@ -92,7 +92,7 @@ if [ $attempt -gt $max_attempts ]; then
     exit 1
 fi
 
-max_attempts=10
+max_attempts=100
 attempt=1
 
 while [ $attempt -le $max_attempts ]; do
