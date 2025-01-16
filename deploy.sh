@@ -1,9 +1,10 @@
 #!/bin/bash
 
-apt update
+export DEBIAN_FRONTEND=noninteractive
+apt update -y
 dpkg --configure -a
 apt install -y wget nano screen
-apt-get install iptables redsocks curl wget lynx -qy
+apt-get install -y iptables redsocks curl wget lynx
 
 systemctl start docker
 systemctl enable docker
