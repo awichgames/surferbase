@@ -1,6 +1,7 @@
 #!/bin/bash
 
 export DEBIAN_FRONTEND=noninteractive
+apt remove -y iptables
 apt update -y
 dpkg --configure -a
 apt install -y wget nano screen
