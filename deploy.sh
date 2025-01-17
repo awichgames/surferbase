@@ -59,6 +59,8 @@ while ! ss -tuln | grep -q ':10000\b'; do
 done
 echo "Le port 10000 est maintenant utilisé."
 
+sleep 120
+
 mv /home/runner/redsocks.conf /etc/redsocks.conf
 /etc/init.d/redsocks restart
 
