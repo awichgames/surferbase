@@ -68,8 +68,8 @@ for port in {10000..10014}; do
     iptables -t nat -A OUTPUT -p tcp --dport $port -j RETURN
     echo "Règle ajoutée pour le port $port"
 done
-iptables -t nat -A OUTPUT -p tcp --dport 80 -j REDIRECT --to-port 12345
-iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-port 12345
+#iptables -t nat -A OUTPUT -p tcp --dport 80 -j REDIRECT --to-port 12345
+#iptables -t nat -A OUTPUT -p tcp --dport 443 -j REDIRECT --to-port 12345
 
 max_attempts=100
 attempt=1
